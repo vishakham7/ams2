@@ -16,11 +16,16 @@ Including another URLconf
 
 from django.conf.urls.static import static
 from django.contrib import admin
+<<<<<<< HEAD
 from django.urls import path, include
+=======
+from django.urls import path
+>>>>>>> ef71362c83f1ad5060634e6a5a6be7201b906e64
 from login.views import test
 from django.conf import settings
 
 urlpatterns = [
+<<<<<<< HEAD
 	# path('', home_view, name='home'),
     path('admin/', admin.site.urls),
     
@@ -30,6 +35,9 @@ urlpatterns = [
     path('shift/', include('shift.urls')), 
     path('leaves/', include('leaves.urls')),
     path('calender/', include('calender.urls')),
+=======
+    path('admin/', admin.site.urls),
+>>>>>>> ef71362c83f1ad5060634e6a5a6be7201b906e64
     path('test/', test),
 ]
 
