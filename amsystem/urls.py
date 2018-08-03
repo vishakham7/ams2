@@ -1,4 +1,9 @@
-"""amsystem URL Configuration
+"""amsystem URL Confipath('user/', include('user.urls')), 
+    path('login/', include('login.urls')),
+    path('attendance/', include('attendance.urls')),
+    path('shift/', include('shift.urls')), 
+    path('leaves/', include('leaves.urls')),
+    path('calender/', include('calender.urls')),guration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -16,13 +21,26 @@ Including another URLconf
 
 from django.conf.urls.static import static
 from django.contrib import admin
+
+from django.urls import path, include
+
 from django.urls import path
-from login.views import login
+
 from django.conf import settings
+from login.views import test
 
 urlpatterns = [
+
+	# path('', home_view, name='home'),
     path('admin/', admin.site.urls),
-    path('login/', login),
+    path('test/', test),
+    # path('user/', include('user.urls')), 
+    # path('login/', include('login.urls')),
+    # path('attendance/', include('attendance.urls')),
+    # path('shift/', include('shift.urls')), 
+    # path('leaves/', include('leaves.urls')),
+    # path('calender/', include('calender.urls')),
+
 ]
 
 if settings.DEBUG:
