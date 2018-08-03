@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-<<<<<<< HEAD
+
 class User(models.Model):
 	name 		= models.CharField(max_length=100)
 	email 		= models.CharField(max_length=100)
@@ -37,5 +37,3 @@ class Team(models.Model):
 	name 		= models.CharField(max_length=20) 
 
 
-=======
->>>>>>> ef71362c83f1ad5060634e6a5a6be7201b906e64

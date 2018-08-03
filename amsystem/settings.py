@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'amsystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-<<<<<<< HEAD
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -102,25 +102,9 @@ DATABASES = {
         'PASSWORD': 'x',
         'HOST': 'localhost',
         'PORT': '',
-=======
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
->>>>>>> ef71362c83f1ad5060634e6a5a6be7201b906e64
-    }
-}
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'attendance_system',
-#         'USER': 'root',
-#         'PASSWORD': 'x',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
 
+        }
+    }
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
