@@ -2,3 +2,8 @@
 	width: 180px;
 	height: 40px;
 }
+
+a:hover,
+a:active{
+	text-decoration: none;
+}

@@ -17,12 +17,12 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from login.views import test
+from login.views import login
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('test/', test),
+    path('login/', login),
 ]
 
 if settings.DEBUG:
