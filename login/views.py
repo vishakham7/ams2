@@ -14,6 +14,3 @@ def ForgetPasswordView(request):
 def UserLogoutView(request):	
 	return render(request, "test.html", {})	
 
-
-def test(request):
-	return render(request, "test.html",{})
