@@ -23,15 +23,24 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
+<<<<<<< HEAD
 from user.views import userDashboardView
+=======
+from login.views import login
+>>>>>>> 31fba0eb6352e9fa2056b523436ca5a0466f6dce
 
 urlpatterns = [
 
 	# path('', home_view, name='home'),
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
 
     path('dashboard/', userDashboardView),
     path('user/', include('user.urls')), 
+=======
+    path('login/', login),
+    # path('user/', include('user.urls')), 
+>>>>>>> 31fba0eb6352e9fa2056b523436ca5a0466f6dce
     # path('login/', include('login.urls')),
     # path('attendance/', include('attendance.urls')),
     # path('shift/', include('shift.urls')), 
