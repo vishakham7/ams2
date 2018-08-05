@@ -6,7 +6,7 @@ class User(models.Model):
 	name 		= models.CharField(max_length=100)
 	email 		= models.CharField(max_length=100)
 	emp_id 		= models.CharField(max_length=10)
-	password 	= models.CharField(max_length=20)
+	password 	= models.CharField(max_length=10)
 	thumb_id 	= models.CharField(max_length=100, null=True)
 	shift_id 	= models.IntegerField(null=True)
 	paid_leaves = models.IntegerField()

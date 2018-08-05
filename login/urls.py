@@ -11,7 +11,7 @@ from .views import(
 app_name = 'login'
 urlpatterns = [
 	path('', UserLoginView),
-	path('passwd', ForgetPasswordView),
+	path('password_reset', ForgetPasswordView),
 	path('reset', resetPassword),
 	path('test', test),
 	path('',UserLogoutView)
