@@ -126,6 +126,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# AUTH_USER_MODEL = 'masterApp.User'
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',]
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 

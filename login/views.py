@@ -9,22 +9,25 @@ from django.http import HttpResponseRedirect, HttpResponse
 from .form import LoginForm, ForgetPassForm
 from masterApp.models import User
 
-# login done
+
 def UserLoginView(request):
 	my_form = LoginForm()
 	if request.method == "POST":
 		my_form = LoginForm(request.POST)
 		email = request.POST['email']
 		password = request.POST['password']
-		if (User.objects.filter(email=email).exists() and User.objects.filter(password=password).exists()):
+		
+		if (User.objects.filter(email=email).exists() or User.objects.filter(password=password).exists()):
 			user = authenticate(email = email, password = password)
 			login(request, user)
-			
 			# return HttpResponse("success")
-			return HttpResponseRedirect('../dashboard')
+			request.session['email'] = email
+			return HttpResponseRedirect('/dashboard')	
+			# return HttpResponse("You're logged in.")
 		else:
 			return HttpResponse("invalid user")
-	else:	
+	else:
+		
 		my_context = {
 			"form" : my_form
 		}
@@ -33,17 +36,11 @@ def UserLoginView(request):
 
 
 def UserLogoutView(request):
-	my_form = LoginForm()
-	my_content={
-			"form" : my_form 
-		}
-	try:
-		del request.session['email']
-		return render(request, "login.html",my_content)
-	except:
-   		# return HttpResponse("<strong>You are logged out.</strong>")	
-   		return render(request, "login.html",my_content)
-   		# return render(request, "login.html",my_content)
+	for sesskey in request.session.keys():
+		del request.session[sesskey]
+		logout(request)
+		return render(request, "test.html",{})
+	
 	
 
 
@@ -51,17 +48,20 @@ def ForgetPasswordView(request):
 	my_form = ForgetPassForm()
 	if request.method == "POST":
 		my_form = ForgetPassForm(request.POST)
-		if my_form.is_valid():
-			email = request.POST['email']
+		
+		email = request.POST.get('email')
 
-			if(User.objects.filter(email=email).exists()):
-				# user = authenticate(email=email)
-				my_content1 = {
-					"form" : my_form
-				}
-				return render(request, "password_reset.html",my_content1)
-			else:
-				raise forms.ValidationError("no user")
+		if(User.objects.filter(email=email).exists()):
+			user = authenticate(email=email)
+			# return HttpResponse("reset")
+			my_content1 = {
+				"form" : my_form
+			}
+			# return render(request, "password_reset.html",my_content1)
+			return HttpResponseRedirect('reset')
+		else:
+			# raise forms.ValidationError("no user")
+			return HttpResponse("no user")
 	else:
 		my_content = {
 			"form" : my_form
@@ -77,19 +77,13 @@ def test(request):
 def resetPassword(request):
 	my_form = ForgetPassForm()
 	if request.method == "POST":
-		my_form = ForgetPassForm(request.POST)
-		my_form.cleaned_data
-		email = my_form.cleaned_data['email']
-		password = request.POST['password']
-		User.objects.get(email='email')
-		User.password = password
-		User.save()
-		return HttpResponseRedirect('/dashboard')
-		
-	my_content = {
-		"form" : my_form
-	}
-	return render(request, "password_reset.html", my_content)
+		# my_form = ForgetPassForm(request.POST, user=request.user)
+		# if my_form.is_valid():
+		# 	my_form.save()
+		pass
 
-def UserLogoutView(request):	
-	return render(request, "test.html", {})	
+	else:
+		my_content = {
+			"form" : my_form
+		}
+		return render(request, "password_reset.html", my_content)
