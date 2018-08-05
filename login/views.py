@@ -6,9 +6,12 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 # Create your views here.
 
+<<<<<<< HEAD
 from .form import LoginForm, ForgetPassForm
 from masterApp.models import User
 
+=======
+>>>>>>> 57da75e612a49d235069623f447e5c5483187e68
 
 def UserLoginView(request):
 	my_form = LoginForm()
@@ -74,6 +77,7 @@ def UserLogoutView(request):
 
 
 
+<<<<<<< HEAD
 def test(request):	
 	my_form = LoginForm()
 	my_content={
@@ -87,3 +91,11 @@ def resetPassword(request):
 		"form" : my_form
 	}
 	return render(request, "password_reset.html", my_content)
+=======
+def UserLogoutView(request):	
+	return render(request, "test.html", {})	
+<<<<<<< HEAD
+=======
+
+>>>>>>> 31fba0eb6352e9fa2056b523436ca5a0466f6dce
+>>>>>>> 57da75e612a49d235069623f447e5c5483187e68

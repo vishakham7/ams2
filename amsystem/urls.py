@@ -21,25 +21,41 @@ Including another URLconf
 
 from django.conf.urls.static import static
 from django.contrib import admin
-
 from django.urls import path, include
-
-from django.urls import path
-
 from django.conf import settings
+<<<<<<< HEAD
 # from login.views import test
+=======
+<<<<<<< HEAD
+from user.views import userDashboardView
+=======
+from login.views import login
+>>>>>>> 31fba0eb6352e9fa2056b523436ca5a0466f6dce
+
+>>>>>>> 57da75e612a49d235069623f447e5c5483187e68
 urlpatterns = [
 
 	# path('', home_view, name='home'),
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
  
     # path('user/', include('user.urls')), 
     path('login/', include('login.urls')),
+=======
+<<<<<<< HEAD
+
+    path('dashboard/', userDashboardView),
+    path('user/', include('user.urls')), 
+=======
+    path('login/', login),
+    # path('user/', include('user.urls')), 
+>>>>>>> 31fba0eb6352e9fa2056b523436ca5a0466f6dce
+    # path('login/', include('login.urls')),
+>>>>>>> 57da75e612a49d235069623f447e5c5483187e68
     # path('attendance/', include('attendance.urls')),
     # path('shift/', include('shift.urls')), 
     # path('leaves/', include('leaves.urls')),
     # path('calender/', include('calender.urls')),
-
 ]
 
 if settings.DEBUG:

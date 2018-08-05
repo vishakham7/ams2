@@ -34,13 +34,13 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="/dashboard">
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-          <a class="nav-link" href="charts.html">
+          <a class="nav-link" href="/user">
             <!-- <i class="fa fa-fw fa-area-chart"></i> -->
             <i class="fas fa-users-cog"></i>
             <span class="nav-link-text">Manage Employee</span>
@@ -103,23 +103,31 @@
     </div>
   </nav>
   <div class="content-wrapper">
+<!-- *************Dynamic Content Start***************************-->
     <div class="container-fluid">
       <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="index.html">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active">Blank Page</li>
-      </ol>
-      <div class="row">
-        <div class="col-12">
-          <h1>Blank</h1>
-          <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
-        </div>
-      </div>
+      {% block navbar %}
+
+      <!-- replace navbar content -->
+
+      {% endblock %}
+
+      
+          {% block content %}  
+
+         <!-- replace main content -->
+
+          {% endblock %}
+        
     </div>
+<<<<<<< HEAD
      <!-- /.container-fluid -->
      <!-- /.content-wrapper -->
+=======
+<!-- *************Dynamic Content End****************************-->
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+>>>>>>> 57da75e612a49d235069623f447e5c5483187e68
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
@@ -167,13 +175,5 @@
     <!-- Custom scripts for all pages-->
     <!-- <script src="/static/js/sb-admin.min.js"></script> -->
   </div>
-
-  <!-- replacable content -->
-
-  {% block content %}  
-
- <!-- replace me -->
-  {% endblock %}
-
 </body>
 </html>
