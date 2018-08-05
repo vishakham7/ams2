@@ -27,15 +27,14 @@ from django.urls import path, include
 from django.urls import path
 
 from django.conf import settings
-from login.views import login
-
+# from login.views import test
 urlpatterns = [
 
 	# path('', home_view, name='home'),
     path('admin/', admin.site.urls),
-    path('login/', login),
+ 
     # path('user/', include('user.urls')), 
-    # path('login/', include('login.urls')),
+    path('login/', include('login.urls')),
     # path('attendance/', include('attendance.urls')),
     # path('shift/', include('shift.urls')), 
     # path('leaves/', include('leaves.urls')),
