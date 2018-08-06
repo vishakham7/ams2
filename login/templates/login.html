@@ -23,7 +23,7 @@
 	<!--===============================================================================================-->
 </head>
 <body>
-	
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -38,9 +38,11 @@
 					</span>
 
 					<!-- email -->
-
+						<div class="alert alert-error" style="color: red; margin: -15px;">{{ form.errors.email}} {{form.errors.password }}</div><br>
+					
 					<div class="wrap-input100">
 						{{ form.email }}
+
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>

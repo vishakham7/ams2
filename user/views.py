@@ -4,6 +4,9 @@ from masterApp.models import User
 from .forms import CreateUserForm
 
 # Create your views here.
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='/login')
 def userDashboardView(request):
 	return render(request, "home.html", {})
 

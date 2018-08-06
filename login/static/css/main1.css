@@ -459,3 +459,12 @@ iframe {
   height: 50px;
   padding: 5px;
 }
+
+.error
+    {
+        color: red;
+    }
+
+input{
+    border: 2px red solid;
+}
