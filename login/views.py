@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, reverse
 
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 # Create your views here.
+
 from django.contrib import messages
 
 from .form import LoginForm, ForgetPassForm, ResetPasswordForm
@@ -22,23 +23,22 @@ def UserLoginView(request):
 				user = authenticate(email = email, password = password)
 				login(request, user)
 				request.session['email'] = email
-				# request.session['name'] =name
+
 				return HttpResponseRedirect('/dashboard')	
 			else:
 				return HttpResponseRedirect('')
 
 		else:
-			
+
 			my_context = {
 			"form" : my_form,
 			}
 			return render(request, "login.html", my_context)
-			# return HttpResponseRedirect('/login?next=dashboard')
-
 		
 	else:
 		
 		my_context = {
+
 			"form" : my_form,
 			"state" : "hey",
 		}
@@ -48,7 +48,16 @@ def UserLogoutView(request):
 	if request.method=="POST":
 		logout(request)
 		session.pop('logged_in', None)
-		return HttpResponseRedirect(reverse(''))	
+		return HttpResponseRedirect(reverse(''))
+		my_context ={	
+			"form" : my_form
+		}
+		return render(request, "login.html", my_context)
+
+
+
+def UserLogoutView(request):
+	return
 
 def ForgetPasswordView(request):
 	my_form = ForgetPassForm()
@@ -100,6 +109,7 @@ def resetPassword(request):
 				u = User.objects.get(email=email)
 				u.password = new_password
 				u.save()
+
 				messages.success(request, 'password updated successfully!.')
 				return HttpResponseRedirect('./')
 			else:
@@ -107,6 +117,7 @@ def resetPassword(request):
 				messages.error(request, 'password unmatch')
 				# return HttpResponseRedirect('password_reset')
 				return HttpResponseRedirect('./reset')
+
 	else:
 		my_content = {
 			"form" : my_form

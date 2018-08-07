@@ -11,6 +11,8 @@ from .views import(
 app_name = 'user'
 urlpatterns = [
 	path('/login', userListView),
+
+	path('', userListView),
     path('<int:id>', userDetailView),
     path('add', userAddView),
     path('<int:id>/delete', userDeleteView),

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from masterApp.models import User
+
 from amsystem.settings import LOGIN_URL
 from .forms import CreateUserForm
 from django.http import HttpResponseRedirect, HttpResponse
@@ -11,6 +12,16 @@ def userDashboardView(request):
 	return render(request, "home.html", {})
 	# return HttpResponseRedirect('/login?next=dashboard')
 	# return HttpResponseRedirect('/dashboard')
+
+
+from .forms import CreateUserForm
+
+# Create your views here.
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='/login')
+def userDashboardView(request):
+	return render(request, "home.html", {})
 
 def userAddView(request):
 	create_form = CreateUserForm(request.POST or None)

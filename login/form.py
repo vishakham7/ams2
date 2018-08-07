@@ -11,6 +11,7 @@ class LoginForm(forms.Form):
 	email = forms.EmailField(label ='',widget=forms.TextInput(
 		attrs={'autocomplete':'off','autofocus':'on','placeholder': 'Email','class':'input100'}))
 	password = forms.CharField(label ='',widget=forms.PasswordInput(attrs={'autocomplete':'off','placeholder': 'Password','class':'input100'}))
+	
 
 	# email = forms.EmailField()
 	# password = forms.CharField()
@@ -36,6 +37,8 @@ class ForgetPassForm(forms.Form):
  #        'password_mismatch': ("The two password fields didn't match."),
  #    }
 	email = forms.EmailField(label ='',widget=forms.TextInput(attrs={'autocomplete':'off','autofocus':'on','placeholder': 'Email', 'class':'input100'}))
+
+	
 	def clean_email(self):
 		clean_email = self.cleaned_data.get("email")
 		email = User.objects.filter(email=clean_email)
@@ -47,9 +50,9 @@ class ForgetPassForm(forms.Form):
 
 class ResetPasswordForm(forms.Form):
 
-	password = forms.CharField(label = '', widget=forms.PasswordInput(attrs={'autocomplete':'off','autofocus':'on','placeholder': 'Repeat Password', 'class':'input100'}))
-	password1 = forms.CharField(label ='',widget=forms.PasswordInput(attrs={'autocomplete':'off','placeholder': 'Password','class':'input100'}))
-
+	password = forms.CharField(label = '', widget=forms.PasswordInput(attrs={'autocomplete':'off','autofocus':'on','placeholder': 'Password', 'class':'input100'}))
+	password1 = forms.CharField(label ='',widget=forms.PasswordInput(attrs={'autocomplete':'off','placeholder': 'Confirm Password','class':'input100'}))
+	
 	def clean_password(self):
 		password = self.cleaned_data.get('password')
 		password1 = self.cleaned_data.get('password1')
