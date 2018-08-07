@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block navbar %} 
+	<ol class="breadcrumb">
+        <li class="breadcrumb-item active">Manage Employee</li>
+      </ol>
+{% endblock %}
+
+{% block content %}  
+
+
+	<div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i>{{ table_name }}
+          <i class="fa fa-button"></i>        
+        </div>
+        <div class="card-body">
+        {% if form %}
+        	<h4>Add Employee</h4>
+        	<form action="/user/add" method="POST"> {% csrf_token %}
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-4">
+                <label for="exampleInputName">Name</label>
+                <!-- <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name"> -->
+              	{{ form.name }}
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputLastName">Email Id</label>
+                <!-- <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name"> -->
+              	{{ form.email }}
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputName">Password</label>
+                <!-- <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name"> -->
+              	{{ form.password }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-4">
+                <label for="exampleInputLastName">Emloyee Id</label>
+                <!-- <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name"> -->
+              	{{ form.emp_id }}
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputName">Thumb Id</label>
+                <!-- <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name"> -->
+              	{{ form.thumb_id }}
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputLastName">Team</label>
+                <!-- <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name"> -->
+              	{{ form.team }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+              
+              <div class="col-md-4">
+                <label for="exampleInputName">Shift</label>
+                <!-- <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name"> -->
+              	{{ form.shift_id }}
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputLastName">Paid Leaves</label>
+                <!-- <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name"> -->
+              	{{ form.paid_leaves }}
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputName">Employee Type</label>
+                <!-- <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name"> -->
+              	{{ form.user_type }}
+              </div>
+            </div>
+          </div>
+
+          <input class="btn btn-success" type="submit" value="Add" style="float: left">
+          <!-- <a class="btn btn-primary btn-block" href="login.html">Register</a> -->
+        </form>
+        <a href="/user" style="float: left"><button class="btn btn-primary">Cancel</button></a></td>
+						
+
+
+						<!-- <h3>Add User</h3>
+						<form action="/user/add" method="POST"> {% csrf_token %}
+							{{ form.as_p }}
+							<input class="btn btn-success" type="submit" value="Add" style="float: left">
+						</form>
+						<a href="/user" style="float: left"><button class="btn btn-danger">Cancel</button></a></td>
+						<br>
+						<br> -->
+
+
+
+
+
+
+
+
+
+
+
+
+					{% elif e_form %}
+						<h3>Update User</h3>	
+						<form action="/user/{{ id }}/update" method="POST"> {% csrf_token %}
+							{{ e_form.as_p }}
+							<input class="btn btn-success" type="submit" value="Update" style="float: left">
+						</form>
+						<a href="/user" style="float: left"><button class="btn btn-danger">Cancel</button></a></td>
+						<br>
+						<br>
+					{% else %}
+						<a href="/user/add"><button class="btn btn-success">Add Empoyee</button></a>
+					{% endif %}
+        	<div class="table-responsive">
+          	<br>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email-ID</th>
+                  <th>Team</th>
+                  <th>Shift</th>
+                  <th>Paind Leaves</th>
+                  <th></th>
+                  
+                </tr>
+              </thead>
+              <!-- <tfoot>
+                <tr>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Office</th>
+                  <th>Age</th>
+                  <th>Start date</th>
+                  <th>Salary</th>
+                </tr>
+              </tfoot> -->
+              <tbody>
+              	{% for object in object_list %}
+	                <tr>
+	                  <td>{{ object.name }}</td>
+	                  <td>{{ object.email }}</td>
+	                  <td>{{ object.team }}</td>
+	                  <td>{{ object.shift_id }}</td>
+	                  <td>{{ object.paid_leaves }}</td>
+	                  <td>
+	                  	<center>
+	                  	<a href="/user/{{ object.id }}/delete"><button class="btn btn-info">Change Shift</button></a>
+	                  	<a href="/user/{{ object.id }}/update"><button class="btn btn-warning">Update</button></a>
+					  					<a href="/user/{{ object.id }}/delete"><button class="btn btn-danger">Delete</button></a>
+	                	</center>
+	                	</td>
+	                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+
+<!-- replace me -->
+{% endblock %}
