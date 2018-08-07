@@ -15,6 +15,7 @@
           <i class="fa fa-button"></i>        
         </div>
         <div class="card-body">
+<!-- **************Add Form Start*********************** -->           
         {% if form %}
         	<h4>Add Employee</h4>
         	<form action="/user/add" method="POST"> {% csrf_token %}
@@ -22,18 +23,15 @@
             <div class="form-row">
               <div class="col-md-4">
                 <label for="exampleInputName">Name</label>
-                <!-- <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name"> -->
-              	{{ form.name }}
+                {{ form.name }}
               </div>
               <div class="col-md-4">
                 <label for="exampleInputLastName">Email Id</label>
-                <!-- <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name"> -->
-              	{{ form.email }}
+                {{ form.email }}
               </div>
               <div class="col-md-4">
                 <label for="exampleInputName">Password</label>
-                <!-- <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name"> -->
-              	{{ form.password }}
+                {{ form.password }}
               </div>
             </div>
           </div>
@@ -42,39 +40,52 @@
             <div class="form-row">
               <div class="col-md-4">
                 <label for="exampleInputLastName">Emloyee Id</label>
-                <!-- <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name"> -->
-              	{{ form.emp_id }}
+                {{ form.emp_id }}
               </div>
               <div class="col-md-4">
                 <label for="exampleInputName">Thumb Id</label>
-                <!-- <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name"> -->
-              	{{ form.thumb_id }}
+                {{ form.thumb_id }}
               </div>
               <div class="col-md-4">
                 <label for="exampleInputLastName">Team</label>
-                <!-- <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name"> -->
-              	{{ form.team }}
+                <select name="team" class="form-control">
+                  <option value="#">-- Select Team --</option>
+                  {% for team in team_list %}
+                      <option value="{{ team.id }}">{{ team.name }}</option>
+                  {% endfor %}
+                </select>
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <div class="form-row">
-              
+            <div class="form-row">              
               <div class="col-md-4">
                 <label for="exampleInputName">Shift</label>
-                <!-- <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name"> -->
-              	{{ form.shift_id }}
+                <select name="shift_id" class="form-control">
+                  <option value="#">-- Select Shift --</option>
+                  {% for shift in shift_list %}
+                      <option value="{{ shift.id }}">{{ shift.name }}</option>
+                  {% endfor %}
+                </select>
               </div>
               <div class="col-md-4">
                 <label for="exampleInputLastName">Paid Leaves</label>
-                <!-- <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name"> -->
-              	{{ form.paid_leaves }}
+                <select name="paid_leaves" class="form-control">
+                  <option value="#">-- Select No.of paid leaves --</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
               </div>
               <div class="col-md-4">
                 <label for="exampleInputName">Employee Type</label>
-                <!-- <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name"> -->
-              	{{ form.user_type }}
+                <select name="user_type" class="form-control">
+                  <option value="#">-- Select No.of user type --</option>
+                  <option value="2">Admin</option>
+                  <option value="3">Employee</option>
+                </select>
               </div>
             </div>
           </div>
@@ -83,78 +94,156 @@
           <!-- <a class="btn btn-primary btn-block" href="login.html">Register</a> -->
         </form>
         <a href="/user" style="float: left"><button class="btn btn-primary">Cancel</button></a></td>
-						
-
-
-						<!-- <h3>Add User</h3>
-						<form action="/user/add" method="POST"> {% csrf_token %}
-							{{ form.as_p }}
-							<input class="btn btn-success" type="submit" value="Add" style="float: left">
-						</form>
-						<a href="/user" style="float: left"><button class="btn btn-danger">Cancel</button></a></td>
-						<br>
-						<br> -->
-
-
-
-
-
-
-
-
-
-
-
+<!-- **************Add Form End*********************** --> 
+<!-- **************Update Form Start*********************** -->
 
 					{% elif e_form %}
-						<h3>Update User</h3>	
-						<form action="/user/{{ id }}/update" method="POST"> {% csrf_token %}
-							{{ e_form.as_p }}
+		  	<h3>Update User : {{ user.name |upper}}</h3>	
+				<form action="/user/{{ id }}/update" method="POST"> {% csrf_token %}						
+          <!-- <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-4">
+                <label for="exampleInputName">Name</label>
+                {{ e_form.name }}
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputLastName">Email Id</label>
+                {{ e_form.email }}
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputName">Password</label>
+                {{ e_form.password }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-4">
+                <label for="exampleInputLastName">Emloyee Id</label>
+                  {{ e_form.emp_id }}
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputName">Thumb Id</label>
+                  {{ e_form.thumb_id }}
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputLastName">Team</label>
+                <select name="team" class="form-control">
+                  <option value="#">-- Select Team --</option>
+                  {% for team in team_list %}
+                      <option value="{{ team.id }}">{{ team.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="form-group">
+            <div class="form-row">             
+              <div class="col-md-4">
+                <label for="exampleInputName">Shift</label>
+                <select name="shift_id" class="form-control">
+                  <option value="#">-- Select Shift --</option>
+                  {% for shift in shift_list %}
+                      {% if user.shift_id == shift.id %}
+                        <option value="{{ shift.id }}" selected="true">{{ shift.name }}</option>
+                      {% else %}
+                        <option value="{{ shift.id }}">{{ shift.name }}</option>
+                      {% endif %}
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputLastName">Paid Leaves</label>
+                <select name="paid_leaves" class="form-control">
+                  <option value="#">-- Select No.of paid leaves --</option>
+                  {% for value in x|ljust:4 %}
+                  <option value="{{ value }}">{{ value }}</option>
+                  {% endfor %}
+                  <!-- <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option> -->
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputName">Employee Type</label>
+                <select name="user_type" class="form-control">
+                  
+                  <option value="2">Admin</option>
+                  <option value="3">Employee</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <input class="btn btn-success" type="submit" value="Update" style="float: left">
+        </form>
+        <a href="/user" style="float: left"><button class="btn btn-primary">Cancel</button></a></td>
+
+
+
+             <!--  {{ e_form.as_p }}
 							<input class="btn btn-success" type="submit" value="Update" style="float: left">
 						</form>
-						<a href="/user" style="float: left"><button class="btn btn-danger">Cancel</button></a></td>
+						<a href="/user" style="float: left"><button class="btn btn-danger">Cancel</button></a> -->
 						<br>
 						<br>
+<!-- **************Update Form End*********************** -->  
+
 					{% else %}
 						<a href="/user/add"><button class="btn btn-success">Add Empoyee</button></a>
 					{% endif %}
+          {% if user_list %}
         	<div class="table-responsive">
           	<br>
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Email-ID</th>
-                  <th>Team</th>
-                  <th>Shift</th>
-                  <th>Paind Leaves</th>
-                  <th></th>
-                  
+                  <th><center>Name</center></th>
+                  <th><center>Email-ID</center></th>
+                  <th><center>Team</center></th>
+                  <th><center>Shift</center></th>
+                  <th><center>Paind Leaves</center></th>
+                  <th><center>Actions</center></th>
                 </tr>
               </thead>
               <!-- <tfoot>
                 <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
+                  <th><center>Name</center></th>
+                  <th><center>Email-ID</center></th>
+                  <th><center>Team</center></th>
+                  <th><center>Shift</center></th>
+                  <th><center>Paind Leaves</center></th>
+                  <th><center>Actions</center></th>
+                  
                 </tr>
               </tfoot> -->
               <tbody>
-              	{% for object in object_list %}
+              	{% for user in user_list %}
 	                <tr>
-	                  <td>{{ object.name }}</td>
-	                  <td>{{ object.email }}</td>
-	                  <td>{{ object.team }}</td>
-	                  <td>{{ object.shift_id }}</td>
-	                  <td>{{ object.paid_leaves }}</td>
+	                  <td>{{ user.name }}</td>
+	                  <td>{{ user.email }}</td>
+	                  <td>
+                      {% for team in team_list %}
+                        {% if user.team == team.id %}
+                          {{ team.name}}
+                        {% endif %}
+                      {% endfor %}
+                    </td>
+	                  <td>
+                      {% for shift in shift_list %}
+                        {% if user.shift_id == shift.id %}
+                          {{ shift.name}}
+                        {% endif %}
+                      {% endfor %}
+                    </td>
+	                  <td>{{ user.paid_leaves }}</td>
 	                  <td>
 	                  	<center>
-	                  	<a href="/user/{{ object.id }}/delete"><button class="btn btn-info">Change Shift</button></a>
-	                  	<a href="/user/{{ object.id }}/update"><button class="btn btn-warning">Update</button></a>
-					  					<a href="/user/{{ object.id }}/delete"><button class="btn btn-danger">Delete</button></a>
+	                  	<a href="/user/{{ user.id }}/delete"><button class="btn btn-info">Change Shift</button></a>
+	                  	<a href="/user/{{ user.id }}/update"><button class="btn btn-warning">Update</button></a>
+					  					<a href="/user/{{ user.id }}/delete"><button class="btn btn-danger">Delete</button></a>
 	                	</center>
 	                	</td>
 	                </tr>
@@ -162,6 +251,7 @@
               </tbody>
             </table>
           </div>
+          {% endif %}
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>

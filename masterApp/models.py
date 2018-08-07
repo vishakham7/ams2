@@ -12,7 +12,7 @@ class User(models.Model):
 	paid_leaves = models.IntegerField()
 	team 		= models.IntegerField()
 	user_type 	= models.IntegerField()
-	del_flag 	= models.IntegerField(default=0)
+	del_flag 	= models.IntegerField(default=1)
 	
 
 class Shift(models.Model):
