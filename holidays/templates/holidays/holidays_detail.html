@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block navbar %} 
+	<ol class="breadcrumb">
+        <li class="breadcrumb-item active">Manage Holidays</li>
+      </ol>
+{% endblock %}
+
+{% block content %}  
+
+
+	<div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i>{{ table_name }}
+          <i class="fa fa-button"></i>        
+        </div>
+        <div class="card-body">
+<!-- **************Add Form Start*********************** -->           
+        {% if form %}
+        	<h4>Add Employee</h4>
+        	<form action="/holidays/add" method="POST"> {% csrf_token %}
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-4">
+                <label for="exampleInputName">Title</label>
+                {{ form.title }}
+                
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputLastName">Date</label>
+                {{ form.date }}
+              </div>
+            </div>
+          </div>
+
+          <input class="btn btn-success" type="submit" value="Add" style="float: left">
+          <!-- <a class="btn btn-primary btn-block" href="login.html">Register</a> -->
+        </form>
+        <a href="/holidays" style="float: left"><button class="btn btn-primary">Cancel</button></a></td>
+<!-- **************Add Form End*********************** --> 
+
+					{% else %}
+						<a href="/holidays/add"><button class="btn btn-success">Add Holiday</button></a>
+					{% endif %}
+          {% if holiday_list %}
+        	<div class="table-responsive">
+          	<br>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="">
+              <thead>
+                <tr>
+                  <th><center>Title</center></th>
+                  <th><center>Date</center></th>
+                  <th><center>Actions</center></th>
+                </tr>
+              </thead>
+              <!-- <tfoot>
+                <tr>
+                  <th><center>Name</center></th>
+                  <th><center>Email-ID</center></th>
+                  <th><center>Team</center></th>
+                  <th><center>Shift</center></th>
+                  <th><center>Paind Leaves</center></th>
+                  <th><center>Actions</center></th>
+                  
+                </tr>
+              </tfoot> -->
+              <tbody>
+              	{% for holiday in holiday_list %}
+	                <tr>
+	                  <td>{{ holiday.title }}</td>
+	                  <td><center>{{ holiday.date }}</center></td>
+	                  <td>
+	                  	<center>
+	                  	<a href="/holidays/{{ holiday.id }}/delete"><button class="btn btn-danger">Delete</button></a>
+	                	</center>
+	                	</td>
+	                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% endif %}
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+
+<!-- replace me -->
+{% endblock %}

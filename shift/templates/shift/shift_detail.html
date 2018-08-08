@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block navbar %} 
+	<ol class="breadcrumb">
+        <li class="breadcrumb-item active">Manage Shift</li>
+      </ol>
+{% endblock %}
+
+{% block content %}  
+
+
+	<div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i>{{ table_name }}
+          <i class="fa fa-button"></i>        
+        </div>
+        <div class="card-body">
+<!-- **************Add Form Start*********************** -->           
+        {% if form %}
+        	<h4>Add Shift</h4>
+        	<form action="/shift/add" method="POST"> {% csrf_token %}
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-4">
+                <label for="exampleInputName">Title</label>
+                {{ form.title }}
+                
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputLastName">Start time</label>
+                {{ form.start_time }}
+              </div>
+               <div class="col-md-4">
+                <label for="exampleInputLastName">End time</label>
+                {{ form.end_time }}
+              </div>
+            </div>
+          </div>
+
+          <input class="btn btn-success" type="submit" value="Add" style="float: left">
+          <!-- <a class="btn btn-primary btn-block" href="login.html">Register</a> -->
+        </form>
+        <a href="/shift" style="float: left"><button class="btn btn-primary">Cancel</button></a></td>
+<!-- **************Add Form End*********************** --> 
+
+		{% else %}
+			<a href="/shift/add"><button class="btn btn-success">Add Shift</button></a>
+		{% endif %}
+
+          {% if shift_list %}
+        	<div class="table-responsive">
+          	<br>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="">
+              <thead>
+                <tr>
+                  <th><center>Title</center></th>
+                  <th><center>Start Time</center></th>
+                  <th><center>End Time</center></th>
+                  <th><center>Actions</center></th>
+                </tr>
+              </thead>
+              <!-- <tfoot>
+                <tr>
+                  <th><center>Title</center></th>
+                  <th><center>From Time</center></th>
+                  <th><center>To Time</center></th>
+                  <th><center>Actions</center></th>
+                </tr>
+              </tfoot> -->
+              <tbody>
+              	{% for shift in shift_list %}
+	                <tr>
+	                  <td>{{ shift.title }}</td>
+	                  <td><center>{{ shift.start_time }}</center></td>
+	                  <td><center>{{ shift.end_time }}</center></td>
+	                  <td>
+	                  	<center>
+	                  	<a href="/shift/{{ shift.id }}/delete"><button class="btn btn-danger">Delete</button></a>
+	                	</center>
+	                	</td>
+	                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% endif %}
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+
+<!-- replace me -->
+{% endblock %}
+

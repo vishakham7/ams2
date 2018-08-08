@@ -35,17 +35,17 @@ urlpatterns = [
 	# path('', home_view, name='home'),
     path('admin/', admin.site.urls), 
     # path('user/', include('user.urls')), 
-    path('login/', include('login.urls')),
+    path('login', include('login.urls')),
 
     path('dashboard/', userDashboardView),
     path('user/', include('user.urls')), 
-    path('login/', login),
+    # path('login/', login),
     # path('user/', include('user.urls')), 
     # path('login/', include('login.urls')),
     # path('attendance/', include('attendance.urls')),
-    # path('shift/', include('shift.urls')), 
+    path('shift/', include('shift.urls')), 
     # path('leaves/', include('leaves.urls')),
-    # path('calender/', include('calender.urls')),
+    path('holidays/', include('holidays.urls')),
 ]
 
 if settings.DEBUG:

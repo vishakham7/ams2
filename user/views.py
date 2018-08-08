@@ -1,14 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from masterApp.models import User, Shift, Team
 
-<<<<<<< HEAD
 from .forms import(
 	CreateUserForm,
  	UpdateUserForm,
  )
-=======
 from amsystem.settings import LOGIN_URL
-from .forms import CreateUserForm
 from django.http import HttpResponseRedirect, HttpResponse
 # Create your views here.
 from django.contrib.auth.decorators import login_required
@@ -18,10 +15,6 @@ def userDashboardView(request):
 	return render(request, "home.html", {})
 	# return HttpResponseRedirect('/login?next=dashboard')
 	# return HttpResponseRedirect('/dashboard')
-
-
-from .forms import CreateUserForm
->>>>>>> 113666d66aba2d660b7e31669dc0dffe68d7b910
 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
@@ -122,7 +115,3 @@ def userDeleteView(request, id):
 	}
 
 	return render(request, "user/user_detail.html", context)
-
-
-def add_user_view(request):
-	return render(request, "testuser/testuser_detail.html", context)

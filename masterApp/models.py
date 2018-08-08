@@ -16,13 +16,13 @@ class User(models.Model):
 	
 
 class Shift(models.Model):
-	name 		= models.CharField(max_length=50)
-	from_time 	= models.CharField(max_length=100)
-	to_time 	= models.CharField(max_length=100)
+	title 		= models.CharField(max_length=50)
+	end_time 	= models.CharField(max_length=100)
+	start_time 	= models.CharField(max_length=100)
 
 
 class Holidays(models.Model):
-	name 		= models.CharField(max_length=50)
+	title 		= models.CharField(max_length=50)
 	date 		= models.CharField(max_length=100)
 
 
