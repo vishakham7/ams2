@@ -1,9 +1,8 @@
 from django import forms
-
 from masterApp.models import User
 
-class LoginForm(forms.Form):
-	error_css_class = 'error'
+class LoginForm(forms.ModelForm):
+	# error_css_class = 'error'
 	class Meta:
 		model = User
 		fields = ('email','password')
