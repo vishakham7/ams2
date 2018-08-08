@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect, reverse
 
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 # Create your views here.
 
+from django.contrib import messages
+
 from .form import LoginForm, ForgetPassForm, ResetPasswordForm
 from masterApp.models import User
-
-
 
 def UserLoginView(request):
 	my_form = LoginForm()
@@ -23,22 +23,33 @@ def UserLoginView(request):
 				user = authenticate(email = email, password = password)
 				login(request, user)
 				request.session['email'] = email
+
 				return HttpResponseRedirect('/dashboard')	
 			else:
 				return HttpResponseRedirect('')
 
 		else:
-			# print(my_form.errors)
-			
+
 			my_context = {
-			"form" : my_form
+			"form" : my_form,
 			}
 			return render(request, "login.html", my_context)
-
 		
 	else:
 		
 		my_context = {
+
+			"form" : my_form,
+			"state" : "hey",
+		}
+		return render(request, "login.html", my_context)
+
+def UserLogoutView(request):
+	if request.method=="POST":
+		logout(request)
+		session.pop('logged_in', None)
+		return HttpResponseRedirect(reverse(''))
+		my_context ={	
 			"form" : my_form
 		}
 		return render(request, "login.html", my_context)
@@ -46,9 +57,7 @@ def UserLoginView(request):
 
 
 def UserLogoutView(request):
-	logout(request)
-	return HttpResponseRedirect('')	
-
+	return
 
 def ForgetPasswordView(request):
 	my_form = ForgetPassForm()
@@ -101,13 +110,13 @@ def resetPassword(request):
 				u.password = new_password
 				u.save()
 
+				messages.success(request, 'password updated successfully!.')
 				return HttpResponseRedirect('./')
-				messages.success(request, "Configuration successfully submitted")
 			else:
-				del request.session['email']
-				return HttpResponseRedirect('password_reset')
-		else:
-			return HttpResponse("something went wrong")
+				# del request.session['email']
+				messages.error(request, 'password unmatch')
+				# return HttpResponseRedirect('password_reset')
+				return HttpResponseRedirect('./reset')
 
 	else:
 		my_content = {

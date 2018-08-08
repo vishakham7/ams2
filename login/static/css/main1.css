@@ -460,11 +460,7 @@ iframe {
   padding: 5px;
 }
 
-.error
-    {
-        color: red;
-    }
 
 input{
-    border: 2px red solid;
+    border: 2px #e6e6e6 solid;
 }
