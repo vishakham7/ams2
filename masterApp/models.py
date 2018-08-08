@@ -36,4 +36,10 @@ class Attendance(models.Model):
 class Team(models.Model):
 	name 		= models.CharField(max_length=20) 
 
+class UserType(models.Model):
+	user_type 	= models.CharField(max_length=20) 
+
+class PaidLeaves(models.Model):
+	no_of_days 	= models.IntegerField(max_length=20) 
+
 
