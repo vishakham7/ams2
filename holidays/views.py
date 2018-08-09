@@ -45,3 +45,16 @@ def holidayDeleteView(request, id):
 	}
 
 	return render(request, "holidays/holidays_detail.html", context)
+
+
+def calenderDetailView(request):
+	holiday_set = Holidays.objects.filter().order_by('date')
+	context = {
+		'holiday_list' : holiday_set,
+		'no_of_days'   : {'jan':31, 'feb':28, 'mar':31, 'apr':30, 'may':31, 'jun':30, 'jul':31, 'aug':31, 'sep':30, 'oct':31, 'nov':30, 'dec':31},
+		'month_names' : ['January','February','March','April','May','June','July','August','September','October','November','December'],
+		'month_names_short' : ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+		'week_list'	: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+		'table_name'  : "Holidays Table",
+	}
+	return render(request, "holidays/calender_detail.html", context)

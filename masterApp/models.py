@@ -15,7 +15,7 @@ class User(models.Model):
 	paid_leaves = models.IntegerField()
 	team 		= models.IntegerField()
 	user_type 	= models.IntegerField()
-	del_flag 	= models.IntegerField(default=0)
+	del_flag 	= models.IntegerField(default=1)
 
 	def __str__(self):
 		return self.email
@@ -26,7 +26,7 @@ class Shift(models.Model):
 	title 		= models.CharField(max_length=50)
 	start_time 	= models.CharField(max_length=100)
 	end_time 	= models.CharField(max_length=100)
-	del_flag 	= models.IntegerField(default=1)
+	# del_flag 	= models.IntegerField(default=1)
 
 
 class Holidays(models.Model):

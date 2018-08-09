@@ -68,13 +68,11 @@ def userListView(request):
 def userDetailView(request):
 	return render(request, "test.html", {})	
 
-<<<<<<< HEAD
-=======
 # def userUpdateView(request, id):
 # 	return render(request, "user/user_detail.html", context)
 
 # @login_required(login_url='/login')
->>>>>>> e85c946d67bcc980bddb6e26a0946bfd40995814
+
 def userUpdateView(request, id=None):
 	object = get_object_or_404(User, id=id)
 	# print(object)
