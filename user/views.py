@@ -68,10 +68,6 @@ def userListView(request):
 def userDetailView(request):
 	return render(request, "test.html", {})	
 
-# def userUpdateView(request, id):
-# 	return render(request, "user/user_detail.html", context)
-
-
 def userUpdateView(request, id=None):
 	object = get_object_or_404(User, id=id)
 	# print(object)

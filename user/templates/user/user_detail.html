@@ -87,7 +87,7 @@
                 <select name="user_type" class="form-control">
                   <option value="#">-- Select No.of user type --</option>
                   {% for utype in utype_list %}
-                      <option value="{{ utype.user_type }}">{{ utype.user_type }}</option>
+                      <option value="{{ utype.id }}">{{ utype.user_type }}</option>
                   {% endfor %}
                   <!-- <option value="2">Admin</option>
                   <option value="3">Employee</option> -->
@@ -200,10 +200,10 @@
 <!-- **************Update Form End*********************** -->  
 
 					{% else %}
-						<a href="/user/add" title="Add Employee">
-             
-            <button class="btn btn-success"> 
-              <i class="fa fa-plus-circle" style="font-size:30px" >
+						<!-- <a href="/user/add" title="Add Employee" style="position: fixed; bottom: 90px; right: 30px;">  -->
+              <a href="/user/add" title="Add Employee" > 
+            <button class="btn" type="button" style="background-color:#39ac73; border-radius: 30% 30% 30%; "> 
+              <i class="fa fa-user-plus" style="font-size:30px; color: #000" >
               </i></button>
             </a>
 
