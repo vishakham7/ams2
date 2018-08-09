@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
-{% block navbar %} 
+{% block navbar %}
 	<ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="index.html">Dashboard</a>
+        <li class="breadcrumb-item active"></li>
+        <a href="{{request.path}}">Dashboard/</a>
         </li>
       </ol>
+
 {% endblock %}
+
 
 {% block content %}  
 <div class="row">

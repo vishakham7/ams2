@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
-{% block navbar %} 
-	<ol class="breadcrumb">
-        <li class="breadcrumb-item active">Manage Holidays</li>
+{% block navbar %}
+  <ol class="breadcrumb">
+        <li class="breadcrumb-item active"></li>
+        <a href="{{request.path}}">Calendar/</a>
+        </li>
       </ol>
+
 {% endblock %}
 
 {% block content %}  
@@ -30,6 +33,7 @@
                 <label for="exampleInputLastName">Date</label>
                 {{ form.date }}
               </div>
+              
             </div>
           </div>
 

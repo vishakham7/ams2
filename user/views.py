@@ -8,21 +8,18 @@ from .forms import(
 from amsystem.settings import LOGIN_URL
 from django.http import HttpResponseRedirect, HttpResponse
 # Create your views here.
+# from django.contrib.auth.decorators import login_required
+
 from django.contrib.auth.decorators import login_required
 
-@login_required
+# @login_required(login_url='/login')
 def userDashboardView(request):
-	return render(request, "home.html", {})
-	# return HttpResponseRedirect('/login?next=dashboard')
-	# return HttpResponseRedirect('/dashboard')
+	if not request.session['email']:
+		return HttpResponse("no")
+	else:
+		return render(request, "home.html", {})
 
-# Create your views here.
-from django.contrib.auth.decorators import login_required
-
-@login_required(login_url='/login')
-def userDashboardView(request):
-	return render(request, "home.html", {})
-
+# @login_required(login_url='/login')
 def userAddView(request):
 	create_form = CreateUserForm(request.POST or None)
 	user_set = User.objects.filter(del_flag=1)
@@ -53,6 +50,7 @@ def userAddView(request):
 		}
 	return render(request, "user/user_detail.html", context)
 
+# @login_required(login_url='/login')
 def userListView(request):
 	user_set = User.objects.filter(del_flag=1)
 	shift_set = Shift.objects.all()
@@ -65,9 +63,18 @@ def userListView(request):
 	}
 	return render(request, "user/user_detail.html", context)
 
+
+# @login_required(login_url='/login')
 def userDetailView(request):
 	return render(request, "test.html", {})	
 
+<<<<<<< HEAD
+=======
+# def userUpdateView(request, id):
+# 	return render(request, "user/user_detail.html", context)
+
+# @login_required(login_url='/login')
+>>>>>>> e85c946d67bcc980bddb6e26a0946bfd40995814
 def userUpdateView(request, id=None):
 	object = get_object_or_404(User, id=id)
 	# print(object)
@@ -105,6 +112,7 @@ def userUpdateView(request, id=None):
 		
 	return render(request, "user/user_detail.html", context)	
 
+# @login_required(login_url='/login')
 def userDeleteView(request, id):
 	obj = User.objects.filter(id=id).update(del_flag=0)
 	print(obj)

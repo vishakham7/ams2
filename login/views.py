@@ -5,26 +5,46 @@ from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 # Create your views here.
-
+from django.db import connection
 from django.contrib import messages
-
+from importlib import import_module
+from django.conf import settings
 from .form import LoginForm, ForgetPassForm, ResetPasswordForm
 from masterApp.models import User
 
+from django.utils import timezone
+
+from django.contrib.sessions.backends.base import SessionBase
+from django.contrib.sessions.models import Session
+cursor = connection.cursor()
 def UserLoginView(request):
+	session_id = request.session.session_key
+	if not session_id=="":
+		if SessionBase.TEST_COOKIE_NAME not in request.session:
+			[s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_hash') == user.get_session_auth_hash()]
+			del request.session[session_id]
+
 	my_form = LoginForm()
 	if request.method == "POST":
 		my_form = LoginForm(request.POST)
 		if my_form.is_valid():
 			email = request.POST.get('email')
 			password = request.POST.get('password')
-			
-			if (User.objects.filter(email=email).exists() and User.objects.filter(password=password).exists()):
-				user = authenticate(email = email, password = password)
-				login(request, user)
-				request.session['email'] = email
+			cursor.execute('select email,password from masterApp_user where email = %s', [email])
+			# if (User.objects.filter(email=email).exists() and User.objects.filter(password=password).exists()):
+			# 	user = authenticate(email = email, password = password)
+			row = cursor.fetchone()
+			if(row[0]==email and row[1]==password):
+				# print(email, password)
+				# login(request, user)
+				# Session.objects.filter(usersession__user=user).delete()
 
-				return HttpResponseRedirect('/dashboard')	
+				# request.session.save()
+				request.session['email'] = email
+				session_id = request.session.session_key
+				SessionStore = import_module(settings.SESSION_ENGINE).SessionStore
+				session_data = SessionStore().decode(session_id)
+				# return HttpResponseRedirect('/dashboard')	
 			else:
 				return HttpResponseRedirect('')
 
@@ -44,20 +64,24 @@ def UserLoginView(request):
 		}
 		return render(request, "login.html", my_context)
 
-def UserLogoutView(request):
-	if request.method=="POST":
-		logout(request)
-		session.pop('logged_in', None)
-		return HttpResponseRedirect(reverse(''))
-		my_context ={	
-			"form" : my_form
-		}
-		return render(request, "login.html", my_context)
+	
+    # return login(request)
+
+# def UserLogoutView(request):
+# 	if request.method=="POST":
+# 		logout(request)
+# 		session.pop('logged_in', None)
+# 		return HttpResponseRedirect(reverse(''))
+# 		my_context ={	
+# 			"form" : my_form
+# 		}
+# 		return render(request, "login.html", my_context)
 
 
 
 def UserLogoutView(request):
-	return
+	for sesskey in request.session.keys():
+		del request.session[sesskey]
 
 def ForgetPasswordView(request):
 	my_form = ForgetPassForm()

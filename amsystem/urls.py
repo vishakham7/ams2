@@ -35,7 +35,7 @@ urlpatterns = [
 	# path('', home_view, name='home'),
     path('admin/', admin.site.urls), 
     # path('user/', include('user.urls')), 
-    path('login', include('login.urls')),
+    path('login/', include('login.urls')),
 
     path('dashboard/', userDashboardView),
     path('user/', include('user.urls')), 

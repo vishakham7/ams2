@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
-{% block navbar %} 
+{% block navbar %}
 	<ol class="breadcrumb">
-        <li class="breadcrumb-item active">Manage Employee</li>
+        <li class="breadcrumb-item active"></li>
+        <a href="{{request.path}}">Manage Employee/</a>
+        </li>
       </ol>
+
 {% endblock %}
 
 {% block content %}  
@@ -200,16 +203,27 @@
 <!-- **************Update Form End*********************** -->  
 
 					{% else %}
+<<<<<<< HEAD
 						<!-- <a href="/user/add" title="Add Employee" style="position: fixed; bottom: 90px; right: 30px;">  -->
               <a href="/user/add" title="Add Employee" > 
             <button class="btn" type="button" style="background-color:#39ac73; border-radius: 30% 30% 30%; "> 
               <i class="fa fa-user-plus" style="font-size:30px; color: #000" >
+=======
+<<<<<<< HEAD
+						<a  href="/user/add"><button class="btn btn-success">Add Empoyee</button></a>
+=======
+						<a href="/user/add" title="Add Employee">
+             
+            <button class="btn btn-success"> 
+              <i class="fa fa-plus-circle" style="font-size:30px" >
+>>>>>>> e85c946d67bcc980bddb6e26a0946bfd40995814
               </i></button>
             </a>
+>>>>>>> 7fffbf9e8a2ba0a39d6f53912f7f74c276b11f4f
 
 					{% endif %}
           {% if user_list %}
-        	<div class="table-responsive">
+        	<div clss="table-responsive">
           	<br>
             <table class="table table-striped" id="dataTable" width="100%" cellspacing="">
               <thead>
@@ -254,6 +268,13 @@
                     </td>
 	                  <td><center>{{ user.paid_leaves }}</center></td>
 	                  <td>
+<<<<<<< HEAD
+	                  	<center>
+	                  	<a href="#"><button class="btn btn-info">Change Shift</button></a>
+	                  	<a href="/user/{{ user.id }}/update"><button class="btn btn-warning">Update</button></a>
+					  					<a href="/user/{{ user.id }}/delete"><button class="btn btn-danger">Delete</button></a>
+	                	</center>
+=======
 	                  	<div class="row">
                         <div class="col-sm-3"></div>
                         <div class="col-sm-2">
@@ -273,6 +294,7 @@
                         </div> 
                         <div class="col-sm-3"></div> 
                       </div>
+>>>>>>> 7fffbf9e8a2ba0a39d6f53912f7f74c276b11f4f
 	                	</td>
 	                </tr>
                 {% endfor %}
