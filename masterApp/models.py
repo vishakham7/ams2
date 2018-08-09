@@ -1,6 +1,6 @@
 from django.db import models
 # Create your models here.
-
+from datetime import datetime 
 from django.contrib.auth.models import User
 class User(models.Model):
 	name 		= models.CharField(max_length=100)
@@ -23,11 +23,18 @@ class Shift(models.Model):
 	title 		= models.CharField(max_length=50)
 	start_time 	= models.CharField(max_length=100)
 	end_time 	= models.CharField(max_length=100)
+	del_flag 	= models.IntegerField(default=1)
+	
+
+class Shift(models.Model):
+	title 		= models.CharField(max_length=50)
+	end_time 	= models.CharField(max_length=100)
+	start_time 	= models.CharField(max_length=100)
 
 
 class Holidays(models.Model):
 	title 		= models.CharField(max_length=50)
-	date 		= models.CharField(max_length=100)
+	date 		= models.CharField(max_length=100, default=datetime.now())
 
 
 class Attendance(models.Model):
