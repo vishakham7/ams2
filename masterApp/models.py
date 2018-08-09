@@ -2,6 +2,9 @@ from django.db import models
 # Create your models here.
 from datetime import datetime 
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.sessions.models import Session
+
 class User(models.Model):
 	name 		= models.CharField(max_length=100)
 	email 		= models.CharField(max_length=100)
@@ -24,12 +27,6 @@ class Shift(models.Model):
 	start_time 	= models.CharField(max_length=100)
 	end_time 	= models.CharField(max_length=100)
 	del_flag 	= models.IntegerField(default=1)
-	
-
-class Shift(models.Model):
-	title 		= models.CharField(max_length=50)
-	end_time 	= models.CharField(max_length=100)
-	start_time 	= models.CharField(max_length=100)
 
 
 class Holidays(models.Model):
@@ -47,4 +44,13 @@ class Attendance(models.Model):
 class Team(models.Model):
 	name 		= models.CharField(max_length=20) 
 
+class UserType(models.Model):
+	user_type 	= models.CharField(max_length=20) 
 
+class PaidLeaves(models.Model):
+	no_of_days 	= models.IntegerField() 
+
+
+class UserSession(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    session = models.OneToOneField(Session, on_delete=models.CASCADE)

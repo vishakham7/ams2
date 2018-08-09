@@ -43,7 +43,7 @@ def shiftAddView(request):
 	return render(request, "shift/shift_detail.html", context)
 
 def shiftListView(request):
-	shift_set = Shift.objects.filter().order_by('title')
+	shift_set = Shift.objects.filter().order_by('start_time')
 	context = {
 		'shift_list' : shift_set,
 		'table_name'  : "Shift Table",
@@ -61,3 +61,6 @@ def shiftDeleteView(request, id):
 	}
 
 	return render(request, "shift/shift_detail.html", context)
+
+
+	

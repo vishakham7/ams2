@@ -50,10 +50,10 @@
           {% if shift_list %}
         	<div class="table-responsive">
           	<br>
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="">
+            <table class="table table-striped" id="dataTable" width="100%" cellspacing="">
               <thead>
                 <tr>
-                  <th><center>Title</center></th>
+                  <th>Title</th>
                   <th><center>Start Time</center></th>
                   <th><center>End Time</center></th>
                   <th><center>Actions</center></th>
@@ -75,7 +75,10 @@
 	                  <td><center>{{ shift.end_time }}</center></td>
 	                  <td>
 	                  	<center>
-	                  	<a href="/shift/{{ shift.id }}/delete"><button class="btn btn-danger">Delete</button></a>
+	                  	<!-- <a href="/shift/{{ shift.id }}/delete"><button class="btn btn-danger">Delete</button></a> -->
+                      <a href="/shift/{{ shift.id }}/delete" title="Delete">
+                        <i class="fa fa-trash-o" style="color:#555353; font-size:25px"></i>
+                      </a>
 	                	</center>
 	                	</td>
 	                </tr>
