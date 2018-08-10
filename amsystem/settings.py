@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     #our own apps
     'attendance',
+    'calender',
     'holidays',
     'leaves',
     'login',

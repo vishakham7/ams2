@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+	<ol class="breadcrumb">
+        <li class="breadcrumb-item active"></li>
+        <a href="{{request.path}}">Manage Calendar/</a>
+        </li>
+      </ol>
+
+{% endblock %}
+
+{% block content %}  
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="">
+      {{ first_week_day }}
+        <thead>
+          <tr>
+            {% for month in month_names_short %}
+              {% if forloop.counter0 == mon_no  %}
+                <th style="background-color: #aff1eb"><center><a href="{{ forloop.counter0 }}"> {{ month }}</a></center></th>
+              {% else %}
+                <th ><center><a href="{{ forloop.counter0 }}"> {{ month }}</a></center></th>  
+               {% endif %} 
+            {% endfor %}
+          </tr>
+        </thead>
+    </table>
+</div>
+
+	
+<div class="table-responsive">
+	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="">
+		<h3>{{ month_name }} {{ year }}</h3>
+		<thead>
+      <tr>
+        {% for week in week_names_short %}
+          <th>{{ week }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+     <tr>
+    {% for blk in blocks %}
+     
+        {% if blk >= first_week_day %}
+          {% for d in dates %}
+            <td> {{ d|add:1 }}</td>
+              {% if first_week_day|add:forloop.counter0|divisibleby:"6" and forloop.parentloop.counter0 <= 6 %}
+                </tr>
+                <tr> 
+              
+              {% elif forloop.counter0|divisibleby:"6" and forloop.parentloop.counter0 > 6%}  
+                </tr>
+                <tr>   
+              {% endif %}  
+           {% endfor %} 
+        {% else %}
+           <td> </td>
+        {% endif %}   
+        
+    {% endfor %}
+    </tr>
+
+
+    	<tr>
+    		<td>31</td>
+    		<td>1</td>
+    		<td>2</td>
+    		<td>3</td>
+    		<td>4</td>
+    		<td>5</td>
+    		<td>6</td>
+    	</tr>
+    	<tr>
+    		<td>7</td>
+    		<td>8</td>
+    		<td>9</td>
+    		<td>10</td>
+    		<td>11</td>
+    		<td>12</td>
+    		<td>13</td>
+    	</tr>
+    	<tr>
+    		<td>14</td>
+    		<td>15</td>
+    		<td>16</td>
+    		<td>17</td>
+    		<td>18</td>
+    		<td>19</td>
+    		<td>20</td>
+    	</tr>
+    	<tr>
+    		<td>21</td>
+    		<td>22</td>
+    		<td>23</td>
+    		<td>24</td>
+    		<td>25</td>
+    		<td>26</td>
+    		<td>27</td>
+    	</tr>
+    	<tr>
+    		<td>28</td>
+    		<td>29</td>
+    		<td>30</td>
+    		<td>31</td>
+    		<td>1</td>
+    		<td>2</td>
+    		<td>3</td>
+    	</tr>
+    </tbody>
+	</table>
+</div>
+
+{% endblock %}

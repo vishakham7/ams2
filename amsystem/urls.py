@@ -43,7 +43,8 @@ urlpatterns = [
     # path('user/', include('user.urls')), 
     # path('login/', include('login.urls')),
     # path('attendance/', include('attendance.urls')),
-    path('shift/', include('shift.urls')), 
+    path('shift/', include('shift.urls')),
+    path('calender/', include('calender.urls')), 
     # path('leaves/', include('leaves.urls')),
     path('holidays/', include('holidays.urls')),
 ]
